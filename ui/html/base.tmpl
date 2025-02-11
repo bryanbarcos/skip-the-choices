@@ -1,0 +1,20 @@
+{{define "base"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{template "title" .}}</title>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+</head>
+<body>
+    <header>
+      <h1><a href='/'>Skip The Choices</a></h1>
+    </header>
+    <button hx-get="/message" hx-target="#response">Load Message</button>
+    <div id="response"></div>
+    <main>
+      {{template "main" .}}
+    </main>
+</body>
+</html>
+{{end}}

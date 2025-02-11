@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HTMX Example</title>
-    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
-</head>
-<body>
-    <h1>Welcome to HTMX Example</h1>
-    <button hx-get="/message" hx-target="#response">Load Message</button>
-    <div id="response"></div>
-</body>
-</html>
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+  <p>Initial home page</p>
+{{end}}
