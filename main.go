@@ -3,12 +3,14 @@ package main
 import (
 	"log"
 	"net/http"
+
+	"github.com/bryanbarcos/skip-the-choices/handlers"
 )
 
 func main() {
 	printBanner()
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", home)
+	mux.HandleFunc("/", handlers.Home)
 
 	log.Println("Starting on server :4000")
 	err := http.ListenAndServe(":4000", mux)

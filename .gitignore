@@ -1,0 +1,37 @@
+Makefile
+
+# Ignore binary output directories
+/bin/
+/build/
+
+# Ignore vendor directory (if using Go modules)
+/vendor/
+
+# Ignore Go module cache
+*.cache
+
+# Ignore compiled object and binary files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.a
+*.o
+*.obj
+
+# Ignore Go test output
+*.out
+*.test
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log and PID files
+*.log
+*.pid
