@@ -1,0 +1,22 @@
+package components 
+
+templ SearchTempl(name string) {
+  <form 
+    hx-get="/api/search"
+    hx-target="#searchResults"
+    hx-trigger="submit"
+    hx-indicator="#loading"
+    class="flex gap-2"
+  >
+    <input type="text" name="query" placeholder="Enter search text" @attr class="border p-2 rounded" required>
+    <button type="submit" @attr class="bg-blue-500 text-white p-2 rounded">Search</button>
+  </form>
+
+  <!-- Loading Indicator -->
+  <div id="loading" @attr class="mt-2 text-blue-500 htmx-indicator hidden">Loading...</div>
+
+  <div id="searchResults" @attr class="mt-4"></div>
+
+
+}
+

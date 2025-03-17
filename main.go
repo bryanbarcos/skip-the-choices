@@ -11,6 +11,7 @@ func main() {
 	printBanner()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.Home)
+	mux.HandleFunc("/api/search", handlers.SearchHandler)
 
 	log.Println("Starting on server :4000")
 	err := http.ListenAndServe(":4000", mux)
