@@ -1,4 +1,6 @@
 Makefile
+.env
+pb_data/*
 
 # Ignore binary output directories
 /bin/
