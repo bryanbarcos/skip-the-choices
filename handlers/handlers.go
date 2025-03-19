@@ -7,12 +7,14 @@ import (
 	//"strings"
 
 	"github.com/bryanbarcos/skip-the-choices/ui"
+	"github.com/pocketbase/pocketbase/core"
 )
 
-func Home(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
+func Home(e *core.RequestEvent) error {
+	if e.Request.URL.RequestURI() != "/" {
+		http.NotFound(e.Response, e.Request)
+		return nil
 	}
-	ui.MainTempl().Render(r.Context(), w)
+	ui.MainTempl().Render(e.Request.Context(), e.Response)
+	return nil
 }

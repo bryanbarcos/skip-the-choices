@@ -2,29 +2,44 @@ package main
 
 import (
 	"log"
-	"net/http"
+	"os"
 
 	"github.com/bryanbarcos/skip-the-choices/handlers"
 	"github.com/joho/godotenv"
+	"github.com/pocketbase/pocketbase"
+	"github.com/pocketbase/pocketbase/core"
 )
 
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("Error loading .env file")
 	}
+	db_directory := os.Getenv("DATA_DIR")
 	printBanner()
 	// get database directory and load pocketbase database
-	//app := pocketbase.New()
+	app := pocketbase.NewWithConfig(pocketbase.Config{
+		DefaultDataDir: db_directory,
+	})
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", handlers.Home)
-	//mux.HandleFunc("/api/search", handlers.SearchHandler(app))
+	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
+		se.Router.GET("/", handlers.Home)
+		se.Router.GET("/api/search", handlers.SearchHandler)
+
+		return se.Next()
+	})
+
+	if err := app.Start(); err != nil {
+		log.Fatal(err)
+	}
+
+	// mux.HandleFunc("/", handlers.Home)
+	// mux.HandleFunc("/api/search", handlers.SearchHandler)
 
 	//log.Println(app.HasTable("restaurants"))
 
-	log.Println("Starting on server :4000")
-	err := http.ListenAndServe(":4000", mux)
-	log.Fatal(err)
+	// log.Println("Starting on server :4000")
+	// err := http.ListenAndServe(":4000", mux)
+	// log.Fatal(err)
 
 }
 
