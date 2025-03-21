@@ -31,16 +31,6 @@ func main() {
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
-
-	// mux.HandleFunc("/", handlers.Home)
-	// mux.HandleFunc("/api/search", handlers.SearchHandler)
-
-	//log.Println(app.HasTable("restaurants"))
-
-	// log.Println("Starting on server :4000")
-	// err := http.ListenAndServe(":4000", mux)
-	// log.Fatal(err)
-
 }
 
 func printBanner() {
