@@ -1,8 +1,9 @@
 package pages
 
 import "github.com/bryanbarcos/skip-the-choices/ui/components"
+import "github.com/bryanbarcos/skip-the-choices/internal/models"
 
-templ MainTempl() {
+templ MainTempl(restaurants []models.Restaurant) {
     <html>
       <head>
         <title>Skip The Choices</title>
@@ -12,6 +13,7 @@ templ MainTempl() {
       <body>
         <h1>Skip The Choices</h1>
         @components.SearchTempl("blah")
+        @components.RestaurantTable(restaurants)
       </body>
     </html>
   }

@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/bryanbarcos/skip-the-choices/api"
 	"github.com/bryanbarcos/skip-the-choices/internal/handlers"
 	"github.com/joho/godotenv"
 	"github.com/pocketbase/pocketbase"
@@ -22,9 +21,11 @@ func main() {
 		DefaultDataDir: db_directory,
 	})
 
+	// userId := "hm77ox88p0j5t4v"
+
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
 		se.Router.GET("/", handlers.Home)
-		se.Router.GET("/api/search", api.RestaurantSearch)
+		se.Router.GET("/api/search", handlers.SearchHandler)
 
 		return se.Next()
 	})

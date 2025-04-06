@@ -6,6 +6,7 @@ import (
 	"net/http"
 	//"strings"
 
+	"github.com/bryanbarcos/skip-the-choices/internal/models"
 	ui "github.com/bryanbarcos/skip-the-choices/ui/pages"
 	"github.com/pocketbase/pocketbase/core"
 )
@@ -15,6 +16,10 @@ func Home(e *core.RequestEvent) error {
 		http.NotFound(e.Response, e.Request)
 		return nil
 	}
-	ui.MainTempl().Render(e.Request.Context(), e.Response)
+	rList := []models.Restaurant{
+		{Name: "Holy Chuck", Category: "burgers"},
+		{Name: "Burger Priest", Category: "burgers"},
+	}
+	ui.MainTempl(rList).Render(e.Request.Context(), e.Response)
 	return nil
 }

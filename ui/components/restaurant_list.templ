@@ -1,12 +1,56 @@
 package components 
 
-templ RestaurantTable() {
+import "github.com/bryanbarcos/skip-the-choices/internal/models"
 
-  <!-- Loading Indicator -->
-  <div id="loading" @attr class="mt-2 text-blue-500 htmx-indicator hidden">Loading...</div>
+templ RestaurantTable(restaurants []models.Restaurant) {
 
-  <div id="searchResults" @attr class="mt-4"></div>
-
+<div class="overflow-x-auto rounded-lg border shadow-sm">
+  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tags</th>
+        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      for _, r := range restaurants {
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-800">{ r.Name }</td>
+          <td class="px-6 py-4 whitespace-nowrap text-gray-600">
+            // for _, tag := range r.Tags {
+            //   <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-1 px-2.5 py-0.5 rounded">
+            //     { tag }
+            //   </span>
+            // }
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-1 px-2.5 py-0.5 rounded">
+                { r.Category }
+              </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
+            <button 
+              class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded"
+              hx-get="/restaurants/{ r.ID }/edit"
+              hx-target="#restaurant-form"
+              hx-swap="outerHTML"
+            >
+              Edit
+            </button>
+            <button 
+              class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded"
+              hx-delete="/restaurants/{ r.ID }"
+              hx-confirm="Are you sure?"
+              hx-target="closest tr"
+              hx-swap="outerHTML"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
 
 }
 
