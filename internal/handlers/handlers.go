@@ -6,7 +6,7 @@ import (
 	"net/http"
 	//"strings"
 
-	"github.com/bryanbarcos/skip-the-choices/ui"
+	ui "github.com/bryanbarcos/skip-the-choices/ui/pages"
 	"github.com/pocketbase/pocketbase/core"
 )
 

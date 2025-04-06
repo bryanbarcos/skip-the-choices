@@ -4,7 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/bryanbarcos/skip-the-choices/handlers"
+	"github.com/bryanbarcos/skip-the-choices/api"
+	"github.com/bryanbarcos/skip-the-choices/internal/handlers"
 	"github.com/joho/godotenv"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
@@ -16,14 +17,14 @@ func main() {
 	}
 	db_directory := os.Getenv("DATA_DIR")
 	printBanner()
-	// get database directory and load pocketbase database
+	// get database directory and load pocketbase
 	app := pocketbase.NewWithConfig(pocketbase.Config{
 		DefaultDataDir: db_directory,
 	})
 
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
 		se.Router.GET("/", handlers.Home)
-		se.Router.GET("/api/search", handlers.SearchHandler)
+		se.Router.GET("/api/search", api.RestaurantSearch)
 
 		return se.Next()
 	})
