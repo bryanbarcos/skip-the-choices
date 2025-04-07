@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	//"strings"
-
 	"github.com/bryanbarcos/skip-the-choices/internal/models"
 	ui "github.com/bryanbarcos/skip-the-choices/ui/pages"
 	"github.com/pocketbase/dbx"
@@ -22,6 +20,8 @@ func Home(e *core.RequestEvent) error {
 	app := e.App
 	records := []models.Restaurant{}
 
+	// Get list of restaurants associated with userId from user_restaurants
+	// table, then get restaurant details from restaurants table with rest_id
 	err := app.DB().
 		NewQuery(`
 			SELECT *
@@ -37,19 +37,12 @@ func Home(e *core.RequestEvent) error {
 		}).
 		All(&records)
 
-		// Select("name", "category").
-		// From("user_restaurants").
-		// AndWhere(dbx.NewExp("user_id = {:userId}", dbx.Params{ "userId": userId })).
-
 	if err != nil {
-		fmt.Println("error: ", err)
+		fmt.Println("error loading restaurant list: ", err)
 		return err
 	}
 
-	// rList := []models.Restaurant{
-	// 	{Name: "Holy Chuck", Category: "burgers"},
-	// 	{Name: "Burger Priest", Category: "burgers"},
-	// }
+	// load the home page templ and pass restaurant list query
 	ui.MainTempl(records).Render(e.Request.Context(), e.Response)
 	return nil
 }
