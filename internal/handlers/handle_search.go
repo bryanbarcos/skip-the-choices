@@ -10,6 +10,9 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
+// Search database restaurants table for restaurants with name
+// like input search -- user will be able to add results to their
+// restaurant list
 func SearchHandler(e *core.RequestEvent) error {
 	app := e.App
 	query := strings.ToLower(e.Request.URL.Query().Get("query"))
@@ -20,14 +23,7 @@ func SearchHandler(e *core.RequestEvent) error {
 	//offset := (page - 1) * 5 + 1
 
 	expr2 := dbx.Like("name", query)
-	// find records using pagination, using
-	// records, err := app.FindRecordsByFilter(
-	// 	"restaurants",     // collection
-	// 	"name ~ {:query}", // filter
-	// 	"-name",           // sort by name descending
-	// 	5,                 // limit
-	// 	0,                 // offset
-	// )
+
 	records := []models.Restaurant{}
 	err := app.DB().
 		Select("name", "category").
