@@ -11,6 +11,8 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
+// Calls database for user's restaurant list and loads
+// the Home Templ page
 func Home(e *core.RequestEvent) error {
 	if e.Request.URL.RequestURI() != "/" {
 		http.NotFound(e.Response, e.Request)
@@ -43,6 +45,6 @@ func Home(e *core.RequestEvent) error {
 	}
 
 	// load the home page templ and pass restaurant list query
-	ui.MainTempl(records).Render(e.Request.Context(), e.Response)
+	ui.HomeTempl(records).Render(e.Request.Context(), e.Response)
 	return nil
 }
