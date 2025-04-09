@@ -44,7 +44,7 @@ func Home(e *core.RequestEvent) error {
 		return err
 	}
 
-	// load the home page templ and pass restaurant list query
+	// load the home page templ and pass restaurant list query result
 	ui.HomeTempl(records).Render(e.Request.Context(), e.Response)
 	return nil
 }
