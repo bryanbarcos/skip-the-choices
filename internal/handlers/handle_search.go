@@ -45,6 +45,7 @@ func SearchHandler(e *core.RequestEvent) error {
 		))
 	}
 	e.Response.Header().Set("Content-Type", "text/html")
+	e.Response.WriteHeader(http.StatusOK)
 	fmt.Fprint(e.Response, strings.Join(htmlResults, ""))
 	return nil
 }
