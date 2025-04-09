@@ -26,7 +26,7 @@ func SearchHandler(e *core.RequestEvent) error {
 
 	records := []models.Restaurant{}
 	err := app.DB().
-		Select("name", "category").
+		Select("id", "name", "category").
 		From("restaurants").
 		AndWhere(expr2).
 		Limit(5).
@@ -41,7 +41,20 @@ func SearchHandler(e *core.RequestEvent) error {
 	var htmlResults []string
 	for _, result := range records {
 		htmlResults = append(htmlResults, fmt.Sprintf(
-			`<div class="p-2 border rounded mt-2 fade-in">%s - %s</div>`, result.Name, result.Category,
+			`<div class="p-4 border rounded-lg mt-2 bg-white shadow-sm flex items-center justify-between">
+				<div>
+					<p class="text-lg font-semibold text-gray-800">%s</p>
+					<p class="text-sm text-gray-500">%s</p>
+				</div>
+				<button 
+					hx-post="/api/add/%s" 
+					hx-swap="none"
+					class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-all"
+				>
+					Add
+				</button>
+			</div>`,
+			result.Name, result.Category, result.Id,
 		))
 	}
 	e.Response.Header().Set("Content-Type", "text/html")
