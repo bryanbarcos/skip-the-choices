@@ -26,6 +26,7 @@ func main() {
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
 		se.Router.GET("/", handlers.Home)
 		se.Router.GET("/api/search", handlers.SearchHandler)
+		se.Router.POST("/api/restaurant/{id}", handlers.AddRestaurant)
 
 		return se.Next()
 	})

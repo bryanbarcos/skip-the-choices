@@ -48,7 +48,7 @@ func SearchHandler(e *core.RequestEvent) error {
 					<p class="text-sm text-gray-500">%s</p>
 				</div>
 				<button 
-					hx-post="/api/add/%s" 
+					hx-post="/api/restaurant/%s" 
 					hx-swap="none"
 					class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-all"
 				>
@@ -61,10 +61,5 @@ func SearchHandler(e *core.RequestEvent) error {
 	e.Response.Header().Set("Content-Type", "text/html")
 	e.Response.WriteHeader(http.StatusOK)
 	fmt.Fprint(e.Response, strings.Join(htmlResults, ""))
-	return nil
-}
-
-func AddRestaurant(e *core.RequestEvent) error {
-
 	return nil
 }
