@@ -40,9 +40,8 @@ func SearchHandler(e *core.RequestEvent) error {
 
 	var htmlResults []string
 	for _, result := range records {
-		fmt.Println("Result value: ", result.Name)
 		htmlResults = append(htmlResults, fmt.Sprintf(
-			`<div class="p-2 border rounded mt-2 fade-in">%s</div>`, result.Name,
+			`<div class="p-2 border rounded mt-2 fade-in">%s - %s</div>`, result.Name, result.Category,
 		))
 	}
 	e.Response.Header().Set("Content-Type", "text/html")

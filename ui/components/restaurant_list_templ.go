@@ -31,7 +31,7 @@ func RestaurantTable(restaurants []models.Restaurant) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"overflow-x-auto rounded-lg border shadow-sm\"><table class=\"min-w-full divide-y divide-gray-200 bg-white text-sm\"><thead class=\"bg-gray-50\"><tr><th class=\"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase\">Name</th><th class=\"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase\">Tags</th><th class=\"px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase\">Actions</th></tr></thead> <tbody class=\"divide-y divide-gray-200\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"overflow-x-auto rounded-lg border shadow-sm\"><table class=\"min-w-full divide-y divide-gray-200 bg-white text-sm\"><thead class=\"bg-gray-50\"><tr><th class=\"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase\">Name</th><th class=\"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase\">Category</th><th class=\"px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase\">Actions</th></tr></thead> <tbody class=\"divide-y divide-gray-200\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
