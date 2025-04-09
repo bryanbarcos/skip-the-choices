@@ -12,7 +12,7 @@ templ HomeTempl(restaurants []models.Restaurant) {
       </head>
       <body>
         <h1>Skip The Choices</h1>
-        @components.SearchTempl("blah")
+        @components.SearchTempl()
         @components.RestaurantTable(restaurants)
       </body>
     </html>
