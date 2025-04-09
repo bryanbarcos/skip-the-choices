@@ -3,6 +3,7 @@ package handlers
 import (
 	//"log"
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/bryanbarcos/skip-the-choices/internal/models"
@@ -60,5 +61,10 @@ func SearchHandler(e *core.RequestEvent) error {
 	e.Response.Header().Set("Content-Type", "text/html")
 	e.Response.WriteHeader(http.StatusOK)
 	fmt.Fprint(e.Response, strings.Join(htmlResults, ""))
+	return nil
+}
+
+func AddRestaurant(e *core.RequestEvent) error {
+
 	return nil
 }
